@@ -6,6 +6,8 @@
 # for now 1 doctor 
 #Real world, I go in as a patient to the system. I select my doctor, i select a date. System will tell me avaiable or not available.
 #i can model key, value? Per date, how many patients. 
+#When i make an appointment, it should update both the patient, and the doctor objects
+#before appointment made, need to check if doctor is available
 
 class Patient
   def init(name)
@@ -17,14 +19,21 @@ end
 class Doctor
   def init(name)
     @name = name
-    @appointments = []
+    #appointment key = date, value = patient
+    @appointments = {}
+  end
+
+  def add_appointment(date, patient)
+    @appointments[date] = patient  
+  end
+  #instance method
+  def available? 
+    appointment
   end
 end
 
 class Appointment
-  def init(doctor, patient, date)
-    @doctor = doctor
-    @patient = patient
-    @date = date
+  def check_available(doctor)
+    doctor.check_available_method 
   end
 end
